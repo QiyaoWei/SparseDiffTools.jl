@@ -52,8 +52,6 @@ function num_vecjac(f, x, v, f0 = nothing)
     f0 === nothing ? _f0 = f(x) : _f0 = f0
     T = eltype(x)
     # Should it be min? max? mean?
-    ϵ = sqrt(eps(real(T))) * max(one(real(T)), abs(norm(x)))
-    du = similar(x)
     println("testing")
     ϵ = sqrt(eps(real(T))) * max(one(real(T)), abs(norm(x)))
     println(typeof(ϵ))
