@@ -54,7 +54,15 @@ function num_vecjac(f, x, v, f0 = nothing)
     # Should it be min? max? mean?
     ϵ = sqrt(eps(real(T))) * max(one(real(T)), abs(norm(x)))
     du = similar(x)
+    println("testing")
+    ϵ = sqrt(eps(real(T))) * max(one(real(T)), abs(norm(x)))
+    println(typeof(ϵ))
+    du = similar(x)
+    println(typeof(x))
+    println(length(x))
     for i = 1:length(x)
+        println(typeof(i))
+        println(typeof(x[i]))
         x[i] += ϵ
         f0 = f(x)
         x[i] -= ϵ
