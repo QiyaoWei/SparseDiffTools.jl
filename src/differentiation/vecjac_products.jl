@@ -60,9 +60,11 @@ function num_vecjac(f, x, v, f0 = nothing)
         temp = zeros(length(x))
         println(typeof(temp))
         temp[i] = ϵ
-        x .+= temp
-        f0 = f(x)
-        x .-= temp
+        println(size(temp))
+        println(size(x))
+        temp = x .+ temp
+        f0 = f(temp)
+        #x .-= temp
         println("done")
         du[i] = (((f0 .- _f0) ./ ϵ)'*vv)[1]
     end
