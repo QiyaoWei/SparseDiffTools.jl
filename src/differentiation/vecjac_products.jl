@@ -54,16 +54,16 @@ function num_vecjac(f, x, v, f0 = nothing)
     # Should it be min? max? mean?
     println("testing")
     ϵ = sqrt(eps(real(T))) * max(one(real(T)), abs(norm(x)))
-    println(typeof(ϵ))
     du = similar(x)
-    println(typeof(x))
-    println(length(x))
+    println(typeof(du))
     for i = 1:length(x)
-        println(typeof(i))
-        println(typeof(x[i]))
-        x[i] += ϵ
+        temp = zeros(length(x))
+        println(typeof(temp))
+        temp[i] = ϵ
+        x .+= temp
         f0 = f(x)
-        x[i] -= ϵ
+        x .-= temp
+        println("done")
         du[i] = (((f0 .- _f0) ./ ϵ)'*vv)[1]
     end
     return vec(du)
